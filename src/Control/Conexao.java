@@ -37,7 +37,6 @@ public class Conexao {
             JOptionPane.showMessageDialog(null, "Falha na conexão!\n" + ex);
             
         }
-    
 }
     
     public void executaSQL(String sql){
@@ -50,5 +49,4 @@ public class Conexao {
         
     }   
     
-       
 }
