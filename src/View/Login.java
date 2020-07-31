@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     Conexao con = new Conexao();
-
-
     /**
      * Creates new form Login
      */
@@ -36,7 +34,7 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtCodAcesso = new javax.swing.JPasswordField();
+        txtSenhaAcesso = new javax.swing.JPasswordField();
         txtUsuarioAcesso = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,15 +44,15 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Informe o código de acesso:");
 
-        txtCodAcesso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtCodAcesso.addActionListener(new java.awt.event.ActionListener() {
+        txtSenhaAcesso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtSenhaAcesso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodAcessoActionPerformed(evt);
+                txtSenhaAcessoActionPerformed(evt);
             }
         });
-        txtCodAcesso.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSenhaAcesso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodAcessoKeyPressed(evt);
+                txtSenhaAcessoKeyPressed(evt);
             }
         });
 
@@ -77,7 +75,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodAcesso, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                            .addComponent(txtSenhaAcesso, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(txtUsuarioAcesso))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
@@ -89,7 +87,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(txtUsuarioAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(txtCodAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSenhaAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
 
@@ -97,32 +95,34 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodAcessoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodAcessoKeyPressed
+    private void txtSenhaAcessoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaAcessoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
            efetuaLogin();
              }
         
-    }//GEN-LAST:event_txtCodAcessoKeyPressed
+    }//GEN-LAST:event_txtSenhaAcessoKeyPressed
 
-    private void txtCodAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodAcessoActionPerformed
+    private void txtSenhaAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaAcessoActionPerformed
         
-    }//GEN-LAST:event_txtCodAcessoActionPerformed
+    }//GEN-LAST:event_txtSenhaAcessoActionPerformed
 
     private void txtUsuarioAcessoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioAcessoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            txtCodAcesso.requestFocus();
+            txtSenhaAcesso.requestFocus();
              }
     }//GEN-LAST:event_txtUsuarioAcessoKeyPressed
 
     public void efetuaLogin (){
         try {
-            con.executaSQL("select * from usuario where login ='"+txtUsuarioAcesso.getText()+"' and senha ='"+txtCodAcesso.getText()+"'");
+            con.executaSQL("select * from usuario where login ='"+txtUsuarioAcesso.getText()+"' and senha ='"+txtSenhaAcesso.getText()+"'");
             con.rs.first(); // o usuario encontrado é salvo dentro do RESULTSET "rs"
-            if (txtUsuarioAcesso.getText().equals(con.rs.getString("login")) && (txtCodAcesso.getText().equals(con.rs.getString("senha"))))
+            if (txtUsuarioAcesso.getText().equals(con.rs.getString("login")) && (txtSenhaAcesso.getText().equals(con.rs.getString("senha"))))
             { // aqui são comparados os valores dos campos com o bando de dados, se estiver correto executa a função abaixo
                 Pesquisa obj = new Pesquisa(); // instancia do Form Pesquisa
+                                
+                obj.setRecebeTexto(txtUsuarioAcesso.getText()); 
+                obj.setRecebeTexto2(txtSenhaAcesso.getText());
                 
-                obj.setRecebeTexto(txtUsuarioAcesso.getText()); // chamada do metodo do FORM Pesquisa
                 obj.setVisible(true);
                 this.dispose(); // fecha somente este FORM 
             } else {
@@ -132,7 +132,7 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException ex) {
             // caso nao seja encontrado o usuario ele exibirá a mensagem abaixo
             //JOptionPane.showMessageDialog(null, "Usuário e/ou senha incorretos!"+ex);
-            txtCodAcesso.setText("");
+            //txtCodAcesso.setText("");
         }
     }
     
@@ -174,7 +174,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField txtCodAcesso;
+    private javax.swing.JPasswordField txtSenhaAcesso;
     private javax.swing.JTextField txtUsuarioAcesso;
     // End of variables declaration//GEN-END:variables
 }

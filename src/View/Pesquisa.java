@@ -207,7 +207,7 @@ public class Pesquisa extends javax.swing.JFrame {
         tableInfo.getColumnModel().getColumn(2).setResizable(false); // não permite alterar o tamanho do campo com o mouse
         tableInfo.getColumnModel().getColumn(3).setPreferredWidth(310); // tamanho do campo
         tableInfo.getColumnModel().getColumn(3).setResizable(false); //não permite alterar o tamanho do campo com o mouse
-        tableInfo.getColumnModel().getColumn(4).setPreferredWidth(290); // tamanho do campo
+        tableInfo.getColumnModel().getColumn(4).setPreferredWidth(150); // tamanho do campo
         tableInfo.getColumnModel().getColumn(4).setResizable(false); //não permite alterar o tamanho do campo com o mouse
         tableInfo.getColumnModel().getColumn(5).setPreferredWidth(160); // tamanho do campo
         tableInfo.getColumnModel().getColumn(5).setResizable(false); // não permite alterar o tamanho do campo com o mouse
@@ -219,6 +219,10 @@ public class Pesquisa extends javax.swing.JFrame {
     
     public void setRecebeTexto(String txt) // metodo que recebe e seta o texto do FORM Login para o campo
     {
+        txtLogado.setText(txt);
+    }
+    
+    public void setRecebeTexto2(String txt) {
         txtLogado.setText(txt);
     }
     
